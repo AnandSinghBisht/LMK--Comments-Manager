@@ -11,9 +11,9 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @EnableAutoConfiguration
 @ComponentScan(basePackages={"com"})
 @EnableMongoRepositories(basePackages="com.repository")
-public class MainApplication {
+public class CommentServiceStarter {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MainApplication.class, args);
+		SpringApplication.run(CommentServiceStarter.class, args);
 	}
 }

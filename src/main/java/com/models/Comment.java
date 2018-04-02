@@ -10,15 +10,39 @@ public class Comment {
 
 	@Id
 	private String id;
+	
 	private String parentId;
 	private String text;
-	private String UserId;
-	private Date createdDate;
+	private String userId;
+	private Date createdDate=new Date();
 	private Date modifiedDate;
-	private Status status;
+	private Status status=Status.Active;
+	private String questionId;
 	
+	//need to discuss
+	private String profilePic;
+	private String userName;
+	
+	public String getProfilePic() {
+		return profilePic;
+	}
+	public void setProfilePic(String profilePic) {
+		this.profilePic = profilePic;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 	public String getId() {
 		return id;
+	}
+	public String getQuestionId() {
+		return questionId;
+	}
+	public void setQuestionId(String questionId) {
+		this.questionId = questionId;
 	}
 	public void setId(String id) {
 		this.id = id;
@@ -36,10 +60,10 @@ public class Comment {
 		this.text = text;
 	}
 	public String getUserId() {
-		return UserId;
+		return userId;
 	}
 	public void setUserId(String userId) {
-		UserId = userId;
+		this.userId = userId;
 	}
 	public Date getCreatedDate() {
 		return createdDate;
@@ -60,6 +84,12 @@ public class Comment {
 		this.status = status;
 	}
 	
-	
+	@Override
+	public String toString() {
+        
+		return "Id: "+ id+", ParentId: "+ parentId+", Text: "+ text+", UserId: "+ userId+
+				", Created: "+ createdDate+", Modified: "+ modifiedDate+", Status: "+ status+
+				", UserName: " + userName;
+	}
 	
 }
