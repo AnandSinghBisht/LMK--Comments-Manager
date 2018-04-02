@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.models.Comment;
 import com.models.QuestionComments;
+import com.models.Response;
 import com.repository.CommentRepository;
 import com.repository.QuestionCommentsRepository;
 
@@ -19,9 +20,9 @@ public class CommentService {
 	@Autowired
 	private QuestionCommentsRepository questionCommentRepo;
 	
-	public QuestionComments getQuestionComment(String id) {
+	public QuestionComments getQuestionComment(String questionId) {
 
-		Optional<QuestionComments> optionalQuestionComments = questionCommentRepo.findById(id);
+		Optional<QuestionComments> optionalQuestionComments = questionCommentRepo.findById(questionId);
 		return optionalQuestionComments.isPresent() ? optionalQuestionComments.get() : null;
 	}
 	
@@ -30,8 +31,28 @@ public class CommentService {
 		Optional<Comment> optionalcomments = commentRepo.findById(id);
 		return optionalcomments.isPresent() ? optionalcomments.get() : null;
 	}
+
+	public Response updateComment(Comment comment) {
+		try{
+			commentRepo.save(comment);
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+			return Response.ERROR;
+		}
+		return Response.SUCCESS;
+	}
+
+	public Response deleteComment(String id) {
+		try {
+			commentRepo.deleteById(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.ERROR;
+		}
+		return Response.SUCCESS;
+	}
 	
-	//getQestions by list of Ids or get multiple quetion by single field
 	
 	
 }
